@@ -17,9 +17,9 @@
         public T RunFlow(T input)
         {
             T result = input;
-            for(int i = 0; i < _blocks.Count; i++)
+            foreach (IBlock<T> block in _blocks)
             {
-                result = _blocks[i].Process(result);
+                result = block.Process(result);
             }
             return result;
         }
