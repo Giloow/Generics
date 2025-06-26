@@ -11,16 +11,25 @@
 
         public void AddBlock(IBlock<T> block)
         {
-            _blocks.Add(block);
+            if (block != null)
+            {
+                _blocks.Add(block);
+            }
         }
 
         public T RunFlow(T input)
         {
+            if (input == null)
+            {
+                return default;
+            }
+
             T result = input;
             foreach (IBlock<T> block in _blocks)
             {
                 result = block.Process(result);
             }
+
             return result;
         }
     }
